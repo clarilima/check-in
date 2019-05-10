@@ -35,3 +35,9 @@ Route::get('participants', 'ParticipantController@index');
 Route::get('participants/{participant}', 'ParticipantController@show');
 Route::put('participants/{participant}', 'ParticipantController@update');
 Route::delete('participants/{participant}', 'ParticipantController@destroy');
+// MEETINGS
+Route::post('meetings', 'MeetingController@store');
+Route::get('meetings', 'MeetingController@index');
+Route::get('meetings/{meeting}', 'MeetingController@show');
+Route::put('meetings/{meeting}', 'MeetingController@update');
+Route::delete('meetings/{meeting}', 'MeetingController@destroy');
