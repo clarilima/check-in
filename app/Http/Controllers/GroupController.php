@@ -19,7 +19,7 @@ class GroupController extends Controller
 //            dd($request->all()['name']);
             $group = Group::create($validation);
             return response()->json([
-                'message' => 'Project Created',
+                'message' => 'Group Created',
                 'status' => 200,
                 'data' => $group,
             ], 200);
@@ -68,7 +68,7 @@ class GroupController extends Controller
             $group->update($request->all());
 
             return response()->json([
-                'message'=>'Project updated!',
+                'message'=>'Group updated!',
                 'status'=>200,
                 'data'=> $group
             ], 200);
@@ -83,7 +83,7 @@ class GroupController extends Controller
         try{
             $group->delete();
             return response()->json([
-                'message'=>'Project Deleted!',
+                'message'=>'Group Deleted!',
                 'status'=>204,
                 'data'=> null
             ], 204);
