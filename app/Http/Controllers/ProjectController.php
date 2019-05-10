@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function store(Request $request) {
 
         $validation = $request->validate([
-            'name' => 'required|unique:projects'
+            'name' => 'required|unique:projects',
         ]);
         try{
 //            dd($request->all()['name']);
@@ -75,6 +75,24 @@ class ProjectController extends Controller
         }catch(\Exception $e){
             return $e->getMessage();
         }
-    }   
+    }
+
+    public function destroy(Project $project) {
+
+        try{
+
+            $project->delete();
+            return response()->json([
+                'message'=>'Project Deleted!',
+                'status'=>204,
+                'data'=> null
+            ], 204);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+
+
+    }
 
 }
