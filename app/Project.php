@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     //
+    protected $guarded = [];
 
     public function groups()
     {
-        return $this->hasMany('App\Comment', 'foreign_key', 'local_key');
+        return $this->hasMany('App\Group');
     }
 }
