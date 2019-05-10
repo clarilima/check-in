@@ -15,10 +15,10 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('participants_id');
-            $table->foreign('participants_id')->references('id')->on('participants');
-            $table->unsignedBigInteger('meetings_id');
-            $table->foreign('meetings_id')->references('id')->on('meetings');
+            $table->unsignedBigInteger('participant_id');
+            $table->foreign('participant_id')->references('id')->on('participants');
+            $table->unsignedBigInteger('meeting_id');
+            $table->foreign('meeting_id')->references('id')->on('meetings');
             $table->timestamps();
         });
     }

@@ -18,8 +18,8 @@ class CreateParticipantsTable extends Migration
             $table->string('name');
             $table->integer('age');
             $table->date('birth');
-            $table->unsignedBigInteger('groups_id');
-            $table->foreign('groups_id')->references('id')->on('groups');
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
     }
