@@ -84,15 +84,29 @@ class ProjectController extends Controller
             $project->delete();
             return response()->json([
                 'message'=>'Project Deleted!',
-                'status'=>204,
+                'status'=>200,
                 'data'=> null
-            ], 204);
+            ], 200);
 
         }catch(\Exception $e){
             return $e->getMessage();
         }
 
-
     }
 
+    public function findGroup(Request $request, Project $project) {
+
+        try{
+
+            $groups = $project->groups;
+            return response()->json([
+                'message'=>'OK!',
+                'status'=>200,
+                'data'=> $groups
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
 }

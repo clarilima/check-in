@@ -11,6 +11,11 @@ class Meeting extends Model
 
     public function presences()
     {
-        return $this->belongsToMany('App\Presence');
+        return $this->belongsToMany(Participant::class, 'presences');
+    }
+
+    public function groups()
+    {
+        return $this->hasManyThrough(Group::class, Participant::class);
     }
 }

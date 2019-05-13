@@ -85,15 +85,29 @@ class ParticipantController extends Controller
             $participant->delete();
             return response()->json([
                 'message'=>'Participant Deleted!',
-                'status'=>204,
+                'status'=>200,
                 'data'=> null
-            ], 204);
+            ], 200);
 
         }catch(\Exception $e){
             return $e->getMessage();
         }
 
+    }
 
+    public function findMeeting(Request $request, Participant $participant){
+        try{
+
+            $meetings = $participant->meetings;
+            return response()->json([
+                'message'=>'OK!',
+                'status'=>200,
+                'data'=> $meetings
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
 
     }
 }

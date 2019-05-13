@@ -11,6 +11,11 @@ class Participant extends Model
 
     public function presences()
     {
-        return $this->belongsToMany('App\Presence');
+        return $this->belongsToMany(Meeting::class, 'presences', 'participant_id', 'meeting_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

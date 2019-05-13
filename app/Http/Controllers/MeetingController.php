@@ -90,4 +90,28 @@ class MeetingController extends Controller
 
 
     }
+    public function findGroup(Request $request, Meeting $meeting) {
+
+        try{
+            $groupsMeeting = [];
+
+            $groups = $meeting->presences()
+                ->whereHas('group')->with('group')
+                ->get()
+                ->unique('group.name');
+
+            foreach($groups as $group){
+                $groupsMeeting[] = $group->group;
+            }
+
+            return response()->json([
+                'message'=>'OK!',
+                'status'=>200,
+                'data'=> $groupsMeeting
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
 }

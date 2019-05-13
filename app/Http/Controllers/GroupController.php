@@ -92,7 +92,40 @@ class GroupController extends Controller
             return $e->getMessage();
         }
 
+    }
 
+    public function findParticipant(Request $request, Group $group) {
+
+        try{
+
+            $participants = $group->participants;
+            dd($participants);
+            return response()->json([
+                'message'=>'OK!',
+                'status'=>200,
+                'data'=> $participants
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+
+    }
+
+    public function findParticipantMeeting(Request $request, Group $group) {
+
+        try{
+
+            $participants = $group->participants()->with('presences')->get();
+            return response()->json([
+                'message'=>'OK!',
+                'status'=>200,
+                'data'=> $participants
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
 
     }
 }
