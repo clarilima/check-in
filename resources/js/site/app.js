@@ -126,7 +126,6 @@ $(document).ready(function () {
                 .then(function(response){
                     $('#modal-loading2').modal('hide');
                     $('#modal-success').modal('show');
-                    location.reload();
                 });
         }
     });

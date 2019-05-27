@@ -10,7 +10,6 @@ class MeetingController extends Controller
     //
     public function store(Request $request) {
 
-
         try{
             $meeting = Meeting::create($request->all());
             return response()->json([

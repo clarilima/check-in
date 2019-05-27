@@ -40,7 +40,7 @@
                             <input type="date" placeholder="* Data do Encontro" name='date' id='date-meeting' value="{!! old('date') !!}" data-required="true">
                         </div>
                         <div>
-                            <label for="description">Confirm your E-mail</label>
+                            {{--<label for="description">Descriçã</label>--}}
                             <input type="text" placeholder="Descrição do Encontro" name='description' id="description" data-required="true" data-error-message="Your E-mail must correspond">
                         </div>
                         <button type="button" id="btn-store-meeting" class="btn btn-form">
@@ -51,18 +51,18 @@
             </div>
         </div>
     </section>
-    <a href="#" data-toggle="modal" data-target="#modal-loading2">aaaaa</a>
+    {{--<a href="#" data-toggle="modal" data-target="#modal-no-success">aaaaa</a>--}}
     @include('site._.modal')
     <script>
         _init.push(function () {
-            function placeholderIsSupported() {
-                test = document.createElement('input');
-                return ('placeholder' in test);
-            }
+            // function placeholderIsSupported() {
+            //     test = document.createElement('input');
+            //     return ('placeholder' in test);
+            // }
 
-            $(document).ready(function(){
-                placeholderSupport = placeholderIsSupported() ? 'placeholder' : 'no-placeholder';
-                $('html').addClass(placeholderSupport);
+            // $(document).ready(function(){
+                // placeholderSupport = placeholderIsSupported() ? 'placeholder' : 'no-placeholder';
+                // $('html').addClass(placeholderSupport);
                 // const picker = datepicker('#date-meeting', {
                 //     customMonths: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
                 // })
@@ -71,7 +71,7 @@
                 //     return picker;
                 // }
                 // $("").datepicker({ dateFormat:'dd-mm-yy'});
-            });
+            // });
 
             validation.formRegisterMeeting();
         });

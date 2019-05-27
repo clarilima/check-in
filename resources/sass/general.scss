@@ -288,3 +288,19 @@ input[type="date"]:before {
     right: 12px;
     color: #999;
 }
+
+#modal-loading2 {
+    .modal-content {
+        border: 0;
+    }
+}
+#modal-success {
+    .modal-body {
+        padding: 70px 0;
+    }
+}
+#modal-no-success {
+    .modal-body {
+        padding: 70px 0;
+    }
+}
