@@ -1,0 +1,60 @@
+.text {
+    &-title {
+        font: {
+            family: Museo-700;
+            size: 7vw;
+        };
+    }
+
+    &-subtitle {
+        font: {
+            size: 5vw;
+        };
+    }
+
+    &-description {
+        font: {
+            size: 4.2vw;
+        };
+    }
+
+    &-small {
+        font-size: 16px;
+    }
+
+    &-muted {
+        color: $white!important;
+    }
+
+    &-label-size {
+        font-size: 20px;
+    }
+
+    @include mq('phablet') {
+        &-title {
+            font: {
+                size: 32px;
+            };
+        }
+
+        &-subtitle {
+            font: {
+                size: 24px;
+            };
+        }
+
+        &-description {
+            font: {
+                size: 20px;
+            };
+        }
+
+        &-small {
+            font-size: 18px;
+        }
+
+        &-label-size {
+            font-size: 28px;
+        }
+    }
+}

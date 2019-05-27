@@ -9,6 +9,8 @@ class Meeting extends Model
     //
     protected $guarded = [];
 
+//    protected $dateFormat = 'U';
+    
     public function presences()
     {
         return $this->belongsToMany(Participant::class, 'presences');

@@ -1,0 +1,43 @@
+@mixin position($position: null, $top:null, $right:null, $bottom:null, $left:null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin relative($args...){
+    @include position(relative, $args...);
+}
+
+@mixin absolute($args...){
+    @include position(absolute, $args...);
+}
+
+@mixin fixed($args...) {
+    @include position(fixed, $args...);
+}
+
+//Media Query Maker
+$breakpoints: (
+    "phone-super-small": 320px,
+    "phone-small":  360px,
+    "phone":        400px,
+    "phone-wide":   480px,
+    "phablet":      560px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+);
+
+@mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}
+//End Media Query Maker

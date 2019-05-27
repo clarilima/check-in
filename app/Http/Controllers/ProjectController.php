@@ -99,6 +99,7 @@ class ProjectController extends Controller
         try{
 
             $groups = $project->groups;
+//            dd($groups);
             return response()->json([
                 'message'=>'OK!',
                 'status'=>200,

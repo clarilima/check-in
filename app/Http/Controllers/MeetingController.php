@@ -28,12 +28,13 @@ class MeetingController extends Controller
     public function index() {
 
         try {
-            $meeting = Meeting::all();
-            return response()->json([
-                'message'=>'OK!',
-                'status'=>200,
-                'data'=> $meeting,
-            ], 200);
+            $meetings = Meeting::all();
+            return view('site.projects', compact('meetings'));
+//            return response()->json([
+//                'message'=>'OK!',
+//                'status'=>200,
+//                'data'=> $meeting,
+//            ], 200);
 
         }catch (\Exception $e) {
             return $e->getMessage();
@@ -114,4 +115,9 @@ class MeetingController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function meetingCreate() {
+        return view('site.meeting-create');
+    }
+
 }

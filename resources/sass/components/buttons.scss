@@ -1,0 +1,41 @@
+button {
+    background-color: transparent;
+}
+
+.btn {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ffffff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin: 10px auto;
+
+    font: {
+        family: 'Museo-300';
+        size: 17px;
+    }
+    line-height: 1.88;
+    outline: none!important;
+    box-shadow: none!important;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:visited {
+        outline: none!important;
+        box-shadow: none!important;
+    }
+
+    background-color: $black;
+
+    color: $white!important;
+
+    &:hover {
+        background-color: #FFA500;
+        color: $white!important;
+    }
+
+    @include mq('phablet') {
+        font-size: 20px;
+    }
+}

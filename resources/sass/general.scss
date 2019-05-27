@@ -1,0 +1,290 @@
+#nav-main {
+
+    .nav, .nav-link, .nav-item.show {
+        background: #FFA500;
+    }
+
+    .nav-link {
+        color: #fff;
+        border-bottom: 0;
+    }
+    .dropdown-item {
+        color: #000;
+    }
+    li {
+        border-bottom: 0;
+    }
+}
+.nav-tabs .nav-item {
+    border-bottom: 0!important;
+}
+.meetings {
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+}
+body {
+    background-color: $white;
+    color: $black;
+    font: {
+        family: Museo-300,sans-serif;
+        size: 4.2vw;
+    };
+
+    @include mq('phablet') {
+        font-size: 16px;
+    }
+}
+
+img {
+    max-width: 100%;
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    display: inline-block;
+}
+
+a, button, input {
+    outline: none!important;
+    box-shadow: none!important;
+    color: inherit!important;
+}
+
+button[disabled] {
+    cursor: not-allowed;
+}
+
+strong {
+    font-family: Museo-900;
+}
+
+
+
+.wrapper-content {
+    padding: 0 10px;
+}
+
+.wrapper-code {
+    background-color: #00a4df;
+    padding: 10px 15px;
+    color: $white;
+    font: {
+        family: Museo-Sans-500;
+        size: 20px;
+    };
+}
+
+.group-cards-form {
+    margin: 20px auto;
+
+    .wrapper-card {
+        padding: 0 10px;
+        margin: 10px auto;
+    }
+
+    .card-disabled {
+        .card-elo {
+            cursor: not-allowed!important;
+        }
+
+        .card-check {
+            display: none!important;
+        }
+    }
+}
+
+.card-elo {
+    position: relative;
+    max-width: 187px;
+    width: 187px;
+    height: 121px;
+    border-radius: 13px;
+    background-color: #191919;
+    cursor: pointer;
+    color: $white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    margin: 0 auto;
+
+    .card-container {
+        padding: 12px;
+    }
+
+    &-check {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+        width: 100%;
+    }
+
+    &.active {
+        box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.3), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+        .card-check {
+            background-color: #ffffff;
+            color: #191919;
+        }
+
+        .card-logo {
+            opacity: 1;
+
+            .check {
+                display: inline-block;
+            }
+            .no-check {
+                display: none;
+            }
+        }
+    }
+
+    &.inverse {
+        .wrapper-card-header {
+            @include absolute($bottom: 0, $left: 0);
+        }
+        .wrapper-card-footer {
+            @include absolute($top: 0, $left: 0);
+        }
+    }
+
+    .wrapper-card-footer {
+        @include absolute($bottom: 0, $left: 0);
+        width: 100%;
+    }
+
+    .card-check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #2d2d2d;
+        color: #5e5e5e;
+    }
+
+    .card-logo {
+        float: right;
+        opacity: .2;
+
+        img {
+            max-width: 41px;
+        }
+
+        .check {
+            display: none;
+        }
+        .no-check {
+            display: inline-block;
+        }
+    }
+}
+
+.slick-next {
+    right: 0;
+
+    &:before {
+        background-image: url("/images/arrow-right.png");
+    }
+}
+.slick-prev {
+    left: 0;
+
+    &:before {
+        background-image: url("/images/arrow-left.png");
+    }
+}
+
+.slick-next, .slick-prev {
+    height: 25px;
+
+    &:before {
+        content: '';
+        background: {
+            position: center;
+            size: cover;
+            repeat: no-repeat;
+        };
+        width: 12px;
+        height: 25px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+table {
+    color: $white!important;
+}
+
+.xdsoft_autocomplete_dropdown {
+    color: $black;
+    padding: 10px;
+
+    b {
+        font-family: Museo-500;
+    }
+}
+
+.xdsoft_autocomplete .xdsoft_autocomplete_dropdown > div.active {
+    font-family: Museo-500;
+    background: transparent;
+    color: $black;
+}
+
+.list-number {
+    padding-left: 15px;
+    li {
+        margin: 5px auto;
+    }
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+input[type="date"]{
+    color: transparent;
+}
+.btn-form {
+    background-color: #000;
+    color: #fff!important;
+    border-radius: 0;
+}
+
+.input-focus {
+    input[type="date"]{
+        color: #000000!important;
+    }
+}
+input[type="date"] {
+    position: relative;
+    padding: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background: none;
+    z-index: 1;
+}
+
+input[type="date"]:before {
+    color: transparent;
+    background: none;
+    display: block;
+    font-family: 'FontAwesome';
+    content: '\f073';
+    /* This is the calendar icon in FontAwesome */
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #999;
+}
