@@ -7,16 +7,15 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
+    // window.Popper = require('popper.js').default;
+    // window.$ = window.jQuery = require('jquery');
+    // //
+    // require('bootstrap');
     require('jquery-validation/dist/jquery.validate.min');
     require('jquery-validation/dist/additional-methods');
     require('jquery-mask-plugin/dist/jquery.mask.min');
     require('jquery-autocomplete/jquery.autocomplete');
-    // require('js-datepicker/dist/datepicker.min');
-    // require('js-datepicker/dist/datepicker.min.css');
+
 } catch (e) {}
 
 /**

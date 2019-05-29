@@ -1,29 +1,3 @@
-#nav-main {
-
-    .nav, .nav-link, .nav-item.show {
-        background: #FFA500;
-    }
-
-    .nav-link {
-        color: #fff;
-        border-bottom: 0;
-    }
-    .dropdown-item {
-        color: #000;
-    }
-    li {
-        border-bottom: 0;
-    }
-}
-.nav-tabs .nav-item {
-    border-bottom: 0!important;
-}
-.meetings {
-    a {
-        color: #000;
-        text-decoration: none;
-    }
-}
 body {
     background-color: $white;
     color: $black;
@@ -33,7 +7,7 @@ body {
     };
 
     @include mq('phablet') {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
@@ -302,5 +276,34 @@ input[type="date"]:before {
 #modal-no-success {
     .modal-body {
         padding: 70px 0;
+    }
+}
+#header-admin {
+    color: $white;
+    .navbar {
+        display: block;
+        padding: 0;
+    }
+}
+
+#table-check {
+    .panel {
+        border-radius: 0;
+    }
+    .table-primary {
+        background-color: #fff;
+        color: #000!important;
+    }
+    .form-inline {
+        display: block;
+        label {
+            display: block;
+        }
+    }
+    .sorting_asc {
+        color: #000;
+    }
+    td {
+        color: #000000;
     }
 }

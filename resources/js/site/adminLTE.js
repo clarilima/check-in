@@ -11,19 +11,12 @@
 * @repository git://github.com/almasaeed2010/AdminLTE.git
 * @license MIT <http://opensource.org/licenses/MIT>
 */
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-    //
-    require('bootstrap');
-
-} catch (e) {}
 
 // Make sure jQuery has been loaded
 if (typeof jQuery === 'undefined') {
     throw new Error('AdminLTE requires jQuery')
 }
-require('../bootstrap');
+
 /* BoxRefresh()
  * =========
  * Adds AJAX content control to a box.
@@ -1131,34 +1124,4 @@ require('../bootstrap');
         })
     })
 
-}(jQuery)
-
-
-
-import Validation from "./components/Validation";
-
-window.validation = new Validation();
-
-
-$(document).ready(function () {
-
-    $('#btn-store-meeting').on('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-
-        if ($("#form-register-meeting").valid()){
-            $('#modal-loading2').modal('show');
-            // console.log(111);s
-            axios.post('/api/meetings', {
-                day: $('#date-meeting').val(),
-                description: $('#description').val(),
-                // opt_in: !$('#opt_in').prop('checked')
-            })
-                .then(function(response){
-                    $('#modal-loading2').modal('hide');
-                    $('#modal-success').modal('show');
-                    $('#date-meeting').val("");
-                });
-        }
-    });
-});
+}(jQuery);

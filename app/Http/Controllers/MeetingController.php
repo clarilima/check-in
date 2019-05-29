@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class MeetingController extends Controller
 {
@@ -24,21 +25,25 @@ class MeetingController extends Controller
         }
     }
 
-    public function index() {
-
-        try {
-            $meetings = Meeting::all();
-            return view('site.projects', compact('meetings'));
-//            return response()->json([
-//                'message'=>'OK!',
-//                'status'=>200,
-//                'data'=> $meeting,
-//            ], 200);
-
-        }catch (\Exception $e) {
-            return $e->getMessage();
+    public function index(Request $request) {
+        if($request->wantsJson()){
+            $source = Meeting::all();
+            return DataTables::of($source)->make(true);
         }
 
+//        try {
+//            $meetings = Meeting::all();
+//
+////            return response()->json([
+////                'message'=>'OK!',
+////                'status'=>200,
+////                'data'=> $meeting,
+////            ], 200);
+//
+//        }catch (\Exception $e) {
+//            return $e->getMessage();
+//        }
+        return view('site.projects');
     }
 
     public function show(Meeting $meeting) {

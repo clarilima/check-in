@@ -41,7 +41,7 @@ Route::get('participants/{participant}/meetings', 'ParticipantController@findMee
 
 
 // MEETINGS
-Route::post('meetings', 'MeetingController@store');
+//Route::post('meetings', 'MeetingController@store');
 Route::get('meetings', 'MeetingController@index');
 Route::get('meetings/{meeting}', 'MeetingController@show');
 Route::put('meetings/{meeting}', 'MeetingController@update');

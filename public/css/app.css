@@ -10906,34 +10906,6 @@ input[type=date] {
   }
 }
 
-#nav-main .nav,
-#nav-main .nav-link,
-#nav-main .nav-item.show {
-  background: #FFA500;
-}
-
-#nav-main .nav-link {
-  color: #fff;
-  border-bottom: 0;
-}
-
-#nav-main .dropdown-item {
-  color: #000;
-}
-
-#nav-main li {
-  border-bottom: 0;
-}
-
-.nav-tabs .nav-item {
-  border-bottom: 0 !important;
-}
-
-.meetings a {
-  color: #000;
-  text-decoration: none;
-}
-
 body {
   background-color: #fff;
   color: #000;
@@ -10943,7 +10915,7 @@ body {
 
 @media only screen and (min-width: 560px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -11214,5 +11186,39 @@ input[type=date]:before {
 
 #modal-no-success .modal-body {
   padding: 70px 0;
+}
+
+#header-admin {
+  color: #fff;
+}
+
+#header-admin .navbar {
+  display: block;
+  padding: 0;
+}
+
+#table-check .panel {
+  border-radius: 0;
+}
+
+#table-check .table-primary {
+  background-color: #fff;
+  color: #000 !important;
+}
+
+#table-check .form-inline {
+  display: block;
+}
+
+#table-check .form-inline label {
+  display: block;
+}
+
+#table-check .sorting_asc {
+  color: #000;
+}
+
+#table-check td {
+  color: #000000;
 }
 

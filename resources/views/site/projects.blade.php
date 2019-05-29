@@ -30,50 +30,62 @@
 
 @section('content')
     {{--<div class="container">--}}
-        {{--<div class="meetings">--}}
-            {{--@foreach($meetings as $meeting)--}}
-                {{--<div class="alert alert-success" role="alert">--}}
-                    {{--<a href="">--}}
-                        {{--{{ $meeting->day }}--}}
-                    {{--</a>--}}
-                    {{--@if($meeting->description)--}}
-                        {{--<p>--}}
-                            {{--{{ $meeting->description }}--}}
-                        {{--</p>--}}
-                    {{--@endif--}}
-                {{--</div>--}}
-            {{--@endforeach--}}
-        {{--</div>--}}
+    {{--<div class="meetings">--}}
+    {{--@foreach($meetings as $meeting)--}}
+    {{--<div class="alert alert-success" role="alert">--}}
+    {{--<a href="">--}}
+    {{--{{ $meeting->day }}--}}
+    {{--</a>--}}
+    {{--@if($meeting->description)--}}
+    {{--<p>--}}
+    {{--{{ $meeting->description }}--}}
+    {{--</p>--}}
+    {{--@endif--}}
     {{--</div>--}}
-    <table id="table_id" class="display">
-        <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-        </tbody>
-    </table>
+    {{--@endforeach--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    <div class="panel" id="table-check">
+        <div class="panel-body">
+            <div class="table-primary">
+                <table class="table table-striped table-bordered" id="datatables" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Encontros</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    {{--<link rel="stylesheet" href="/css/admin_custom.css">--}}
 @stop
 
 @section('js')
     <script>
         // console.log('Hi!');
         $(document).ready( function () {
-            $('#table_id').DataTable();
+            $('#datatables').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                ajax: '/meetings',
+                columns: [
+                    {data: 'day', day: 'day', render: function($data, $, $row){
+                            return '<a href="'+$row.editUrl+'">'+$row.day+'</a>';
+                        }},
+                    // {data: 'day'},
+                    // {data: 'slug'},
+                    // {render: renderBtnBins},
+                    // {render: renderBtnEdit},
+                    // {render: renderBtnDelete}
+                ],
+            });
         } );
     </script>
 @stop

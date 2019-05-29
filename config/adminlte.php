@@ -123,6 +123,11 @@ return [
         ],
         'ACCOUNT SETTINGS',
         [
+            'text' => 'Criar Encontro',
+            'url'  => '/meeting/create',
+            'icon' => 'user',
+        ],
+        [
             'text' => 'Profile',
             'url'  => 'admin/settings',
             'icon' => 'user',
