@@ -43,7 +43,7 @@ Route::get('participants/{participant}/meetings', 'ParticipantController@findMee
 // MEETINGS
 //Route::post('meetings', 'MeetingController@store');
 Route::get('meetings', 'MeetingController@index');
-Route::get('meetings/{meeting}', 'MeetingController@show');
+Route::get('meetings/{meeting}', 'MeetingController@show')->name('meeting.show');
 Route::put('meetings/{meeting}', 'MeetingController@update');
 Route::delete('meetings/{meeting}', 'MeetingController@destroy');
 Route::get('meetings/{meeting}/groups', 'MeetingController@findGroup');

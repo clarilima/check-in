@@ -77,7 +77,10 @@
                 ajax: '/meetings',
                 columns: [
                     {data: 'day', day: 'day', render: function($data, $, $row){
-                            return '<a href="'+$row.editUrl+'">'+$row.day+'</a>';
+                        if($row.description != null){
+                            return '<a href="'+$row.showUrl+'">'+$row.day+'</a><p>'+$row.description+'</p>';
+                        }
+                            return '<a href="'+$row.showUrl+'">'+$row.day+'</a>';
                         }},
                     // {data: 'day'},
                     // {data: 'slug'},

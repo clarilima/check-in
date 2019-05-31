@@ -28,9 +28,12 @@ class MeetingController extends Controller
     public function index(Request $request) {
         if($request->wantsJson()){
             $source = Meeting::all();
-            return DataTables::of($source)->make(true);
-        }
+            return DataTables::of($source)->
+            addColumn('showUrl', function (Meeting $meeting){
+                return route('meeting.show', $meeting->id);
+            })->make(true);
 
+        }
 //        try {
 //            $meetings = Meeting::all();
 //
@@ -49,16 +52,19 @@ class MeetingController extends Controller
     public function show(Meeting $meeting) {
 
         try {
-            return response()->json([
-                'message'=>'OK!',
-                'status'=>200,
-                'data'=> $meeting
-            ], 200);
+            return view('site.meeting-check');
+
+//            return response()->json([
+//                'message'=>'OK!',
+//                'status'=>200,
+//                'data'=> $meeting
+//            ], 200);
 
         }
         catch (\Exception $e) {
             return $e->getMessage();
         }
+
 
     }
 
