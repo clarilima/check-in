@@ -58,28 +58,48 @@
                 return `<div class="custom-control custom-switch"><input type="checkbox" data-id="${row.id}" ${check} data-check="${row.checkMeeting}" class="custom-control-input btn-check" id="check-${row.id}"><label class="custom-control-label" for="check-${row.id}"></label></div>`;
             }
 
-
-                $('#datatables').on('change', '.btn-check', function () {
+            $('#datatables').on('change', '.btn-check', function () {
                 let participant = $(this).data('id');
+                let participantChecked = $(this).data('check');
                 let meeting = idMeeting;
-                axios.post('/api/check-in', {
-                    participant_id: participant,
-                    meeting_id: meeting,
-                    // opt_in: !$('#opt_in').prop('checked')
-                })
-                    .then(function(response){
-                        alert('Check in com sucesso');
-                        // $('#modal-loading2').modal('hide');
-                        // $('body').css({'overflow': 'hidden'});
-                        // $('#modal-success').css({'overflow-y': 'auto'});
-                        // $('#modal-success').modal('show');
-                        // $('#form-register-valet-partners')[0].reset();
-                        // $('#form-register-valet-partners select').get(0).selectedIndex = 0;
-                        // $('input').closest('.form-group').removeClass('input-focus').find('.label-text').removeClass('focus');
+                let self = $(this);
+                console.log(participantChecked);
+                if($(this).is(':checked')){
+                    axios.post('/api/check-in', {
+                        participant_id: participant,
+                        meeting_id: meeting,
+                        // opt_in: !$('#opt_in').prop('checked')
                     })
-                    .catch(function (error) {
-                        alert('Não rolou');
-                    });
+                        .then(function(response){
+                            // alert('Check in com sucesso');
+                            // self.attr('data-check', 1);
+                            // $(this).prop('data-check', 1);
+                            // $('#modal-loading2').modal('hide');
+                            // $('body').css({'overflow': 'hidden'});
+                            // $('#modal-success').css({'overflow-y': 'auto'});
+                            // $('#modal-success').modal('show');
+                            // $('#form-register-valet-partners')[0].reset();
+                            // $('#form-register-valet-partners select').get(0).selectedIndex = 0;
+                            // $('input').closest('.form-group').removeClass('input-focus').find('.label-text').removeClass('focus');
+                        })
+                        .catch(function (error) {
+                            alert('Não rolou');
+                        });
+                }else{
+                    axios.delete('/api/check-out/'+participant+'/'+meeting)
+                        .then(function(response){
+                            // self.attr('data-check', 0);
+                            // $(this).prop('data-check', 0);
+                            // $('#modal-loading2').modal('hide');
+                            // $('body').css({'overflow': 'hidden'});
+                            // $('#modal-success').css({'overflow-y': 'auto'});
+                            // $('#modal-success').modal('show');
+                            // $('#form-register-valet-partners')[0].reset();
+                            // $('#form-register-valet-partners select').get(0).selectedIndex = 0;
+                            // $('input').closest('.form-group').removeClass('input-focus').find('.label-text').removeClass('focus');
+                        })
+                }
+
             });
         });
     </script>

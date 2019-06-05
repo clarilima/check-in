@@ -23,4 +23,21 @@ class CheckInController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function checkOut(Request $request, $participant, $meeting){
+
+        try{
+            $source = Presence::where('participant_id', $participant)->
+            where('meeting_id', $meeting)->delete();
+            return response()->json([
+                'message'=>'Participante Checkd Out',
+                'status'=>200,
+                'data'=> null
+            ], 200);
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+
+    }
 }

@@ -58,6 +58,7 @@ Route::group([],function () use($c){
     Route::get('meetings/{meeting}/groups', 'MeetingController@findGroup');
 
     Route::post('/check-in', 'CheckInController@check');
+    Route::delete('check-out/{participant}/{meeting}', 'CheckInController@checkOut');
 });
 
 
