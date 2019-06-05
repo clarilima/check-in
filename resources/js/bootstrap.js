@@ -15,6 +15,7 @@ try {
     require('jquery-validation/dist/additional-methods');
     require('jquery-mask-plugin/dist/jquery.mask.min');
     require('jquery-autocomplete/jquery.autocomplete');
+    require('bootstrap-toggle/js/bootstrap-toggle.min');
 
 } catch (e) {}
 

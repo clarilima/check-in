@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Meeting;
+use App\Participant;
+use function foo\func;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -49,22 +51,36 @@ class MeetingController extends Controller
         return view('site.projects');
     }
 
-    public function show(Meeting $meeting) {
+    public function show(Request $request, Meeting $meeting) {
 
-        try {
-            return view('site.meeting-check');
 
-//            return response()->json([
-//                'message'=>'OK!',
-//                'status'=>200,
-//                'data'=> $meeting
-//            ], 200);
+        if($request->wantsJson()){
+            $source = Participant::all();
 
+            return DataTables::of($source)->
+            addColumn('checkMeeting', function ($participant) use ($meeting){
+                $check = $participant->presences()->where('meeting_id', $meeting->id)->get();
+
+                if($check->count() > 0){
+                    return 1;
+                }
+                return 0;
+            })->make(true);
         }
-        catch (\Exception $e) {
-            return $e->getMessage();
-        }
-
+//        try {
+//
+//
+////            return response()->json([
+////                'message'=>'OK!',
+////                'status'=>200,
+////                'data'=> $meeting
+////            ], 200);
+//
+//        }
+//        catch (\Exception $e) {
+//            return $e->getMessage();
+//        }
+        return view('site.meeting-check', compact('meeting'));
 
     }
 

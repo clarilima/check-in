@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-toggle": "^2.2.2",
         "jquery-autocomplete": "^1.2.8",
         "jquery-mask-plugin": "^1.14.15",
         "jquery-validation": "^1.19.0",
