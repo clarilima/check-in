@@ -12,6 +12,103 @@
 @stop
 
 @section('content')
+    <div class="btn-group">
+        <button class="btn btn-success m-b-2" data-toggle="modal" data-target="#modal_default">
+            <span class="btn-label-icon left fa fa-plus mr-3"></span>Novo Participante
+        </button>
+    </div>
+
+    {{--<!-- Modal Create -->--}}
+    <div class="modal fade in" id="modal_default" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Cadastrar novo Participante</p>
+                    <div class="form-create-participant">
+                        <form action="/admin/emmiters" method="POST" id="formCreate">
+                            @csrf
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="emailEmissor">Nome</label>
+                                    <input type="text" class="form-control" name="name" id="nameEmissor" placeholder="Digite seu nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tokenEmissor">Idade</label>
+                                    <input type="text" class="form-control" name="age" id="tokenEmissor" placeholder="Token">
+                                </div>
+                                <div class="form-group">
+                                    <label for="validadeEmissor">Data de nascimento</label>
+                                    <input type="date" class="form-control" name="birth" id="validadeEmissor" placeholder="Data de validade">
+                                </div>
+                                <div class="form-group">
+                                    <label>Disabled Result</label>
+                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option selected="selected">Alabama</option>
+                                        <option>Alaska</option>
+                                        <option disabled="disabled">California (disabled)</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--<div class="modal fade" id="modal_create" tabindex="-1">--}}
+    {{--<div class="modal-dialog">--}}
+    {{--<div class="modal-content">--}}
+    {{--<div class="modal-header">--}}
+    {{--<button type="button" class="close" data-dismiss="modal">×</button>--}}
+    {{--<h4 class="modal-title" id="myModalLabel">Criar novo Emissor</h4>--}}
+    {{--</div>--}}
+
+    {{--<section class="w-100" id="modal-teste" style="position: absolute; z-index: 1; background: transparent; opacity: 1;">--}}
+    {{--<div class="form-create-participant">--}}
+    {{--<form action="/admin/emmiters" method="POST" id="formCreate">--}}
+    {{--@csrf--}}
+    {{--<div class="modal-body">--}}
+
+    {{--<div class="form-group">--}}
+    {{--<label for="emailEmissor">Nome</label>--}}
+    {{--<input type="text" class="form-control" name="name" id="nameEmissor" placeholder="Digite seu nome">--}}
+    {{--</div>--}}
+    {{--<div class="form-group">--}}
+    {{--<label for="tokenEmissor">Token</label>--}}
+    {{--<input type="text" class="form-control" name="token" id="tokenEmissor" placeholder="Token">--}}
+    {{--</div>--}}
+    {{--<div class="form-group">--}}
+    {{--<label for="validadeEmissor">Validade</label>--}}
+    {{--<input type="text" class="form-control" name="maturity" id="validadeEmissor" placeholder="Data de validade">--}}
+    {{--</div>--}}
+
+    {{--</div>--}}
+    {{--<div class="modal-footer">--}}
+    {{--<button type="button" class="btn" data-dismiss="modal">Fechar</button>--}}
+    {{--<button type="submit" class="btn btn-primary">Enviar</button>--}}
+    {{--</div>--}}
+    {{--</form>--}}
+    {{--</div>--}}
+    {{--</section>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+
     <div class="panel" id="table-check">
         <div class="panel-body">
             <div class="table-primary">
@@ -19,7 +116,7 @@
                     <thead>
                     <tr>
                         <th>Pessoas</th>
-                        <th>Check-in</th>
+                        <th style="color: #000;">Check-in</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,16 +168,7 @@
                         // opt_in: !$('#opt_in').prop('checked')
                     })
                         .then(function(response){
-                            // alert('Check in com sucesso');
-                            // self.attr('data-check', 1);
-                            // $(this).prop('data-check', 1);
-                            // $('#modal-loading2').modal('hide');
-                            // $('body').css({'overflow': 'hidden'});
-                            // $('#modal-success').css({'overflow-y': 'auto'});
-                            // $('#modal-success').modal('show');
-                            // $('#form-register-valet-partners')[0].reset();
-                            // $('#form-register-valet-partners select').get(0).selectedIndex = 0;
-                            // $('input').closest('.form-group').removeClass('input-focus').find('.label-text').removeClass('focus');
+
                         })
                         .catch(function (error) {
                             alert('Não rolou');
@@ -88,15 +176,6 @@
                 }else{
                     axios.delete('/api/check-out/'+participant+'/'+meeting)
                         .then(function(response){
-                            // self.attr('data-check', 0);
-                            // $(this).prop('data-check', 0);
-                            // $('#modal-loading2').modal('hide');
-                            // $('body').css({'overflow': 'hidden'});
-                            // $('#modal-success').css({'overflow-y': 'auto'});
-                            // $('#modal-success').modal('show');
-                            // $('#form-register-valet-partners')[0].reset();
-                            // $('#form-register-valet-partners select').get(0).selectedIndex = 0;
-                            // $('input').closest('.form-group').removeClass('input-focus').find('.label-text').removeClass('focus');
                         })
                 }
 

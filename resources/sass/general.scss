@@ -307,5 +307,14 @@ input[type="date"]:before {
         color: #000000;
     }
 }
+.form-create-participant {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
 
+    .btn {
+        margin-bottom: 0!important;
+    }
+}
 

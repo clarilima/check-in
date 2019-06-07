@@ -10671,9 +10671,8 @@ button {
   text-align: center;
   border: 1px solid #ffffff;
   border-radius: 30px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   margin: 10px auto;
-  font-family: "Museo-300";
   font-size: 17px;
   line-height: 1.88;
   outline: none !important;
@@ -10697,7 +10696,7 @@ button {
 
 @media only screen and (min-width: 560px) {
   .btn {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -11220,5 +11219,16 @@ input[type=date]:before {
 
 #table-check td {
   color: #000000;
+}
+
+.form-create-participant {
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.form-create-participant .btn {
+  margin-bottom: 0 !important;
 }
 
