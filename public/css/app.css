@@ -11237,3 +11237,9 @@ input[type=date]:before {
   right: 5px;
 }
 
+#panel-filter-check .btn {
+  border-radius: 0;
+  max-width: 125px;
+  width: 100%;
+}
+

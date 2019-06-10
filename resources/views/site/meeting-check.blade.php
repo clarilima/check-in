@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" id="panel-filter-check">
         <div class="panel-body">
             <div class="row">
                 <div class="col-6">
@@ -100,10 +100,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-2">
-                    <button type="button" class="btn bg-warning" id="btn-filtrar-participants" disabled>Filtrar</button>
-                </div>
             </div>
+        </div>
+        <div class="panel-footer">
+                <button type="button" class="btn bg-warning" id="btn-filtrar-participants" disabled>Filtrar</button>
+                <button type="button" class="btn bg-success" id="btn-clear">Limpar</button>
         </div>
     </div>
 
@@ -225,8 +226,15 @@
                 url += `?idGroup=${group}`;
                 table.ajax.url(url).load();
 
+            });
+            $('#btn-clear').on('click', function(){
+                $('#projectId').val('-');
+                $('#rebanhoId').val('-')
+                $('#rebanhoId').prop('disabled', true);
 
-            })
+                let url = `/meetings/${idMeeting}`;
+                table.ajax.url(url).load();
+            });
         });
     </script>
 @stop

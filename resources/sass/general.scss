@@ -324,4 +324,11 @@ input[type="date"]:before {
     }
 
 }
+#panel-filter-check {
+    .btn {
+        border-radius: 0;
+        max-width: 125px;
+        width: 100%;
+    }
+}
 
