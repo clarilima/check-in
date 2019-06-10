@@ -317,4 +317,11 @@ input[type="date"]:before {
         margin-bottom: 0!important;
     }
 }
+#modal_create {
+    input[type="date"]:before {
+        top: -5px;
+        right: 5px;
+    }
+
+}
 

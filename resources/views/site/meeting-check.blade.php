@@ -13,13 +13,13 @@
 
 @section('content')
     <div class="btn-group">
-        <button class="btn btn-success m-b-2" data-toggle="modal" data-target="#modal_default">
+        <button class="btn btn-success m-b-2" data-toggle="modal" data-target="#modal_create">
             <span class="btn-label-icon left fa fa-plus mr-3"></span>Novo Participante
         </button>
     </div>
 
     {{--<!-- Modal Create -->--}}
-    <div class="modal fade in" id="modal_default" style="display: none;">
+    <div class="modal fade in" id="modal_create" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -30,7 +30,7 @@
                 <div class="modal-body">
                     <p>Cadastrar novo Participante</p>
                     <div class="form-create-participant">
-                        <form action="/admin/emmiters" method="POST" id="formCreate">
+                        <form action="/participants" method="POST" id="formCreate">
                             @csrf
                             <div class="modal-body">
 
@@ -47,15 +47,20 @@
                                     <input type="date" class="form-control" name="birth" id="validadeEmissor" placeholder="Data de validade">
                                 </div>
                                 <div class="form-group">
-                                    <label>Disabled Result</label>
-                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option disabled="disabled">California (disabled)</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                    <label>Projeto</label>
+                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" id="project" name="project_id">
+                                        <option selected=""> - </option>
+                                        @foreach($projects as $project)
+                                            <option value="{{$project->id}}">
+                                                {{$project->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Rebanho</label>
+                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" disabled id="rebanho" name="group_id">
+                                        <option selected=""> - </option>
                                     </select>
                                 </div>
 
@@ -70,44 +75,37 @@
             </div>
         </div>
     </div>
-    {{--<div class="modal fade" id="modal_create" tabindex="-1">--}}
-    {{--<div class="modal-dialog">--}}
-    {{--<div class="modal-content">--}}
-    {{--<div class="modal-header">--}}
-    {{--<button type="button" class="close" data-dismiss="modal">×</button>--}}
-    {{--<h4 class="modal-title" id="myModalLabel">Criar novo Emissor</h4>--}}
-    {{--</div>--}}
 
-    {{--<section class="w-100" id="modal-teste" style="position: absolute; z-index: 1; background: transparent; opacity: 1;">--}}
-    {{--<div class="form-create-participant">--}}
-    {{--<form action="/admin/emmiters" method="POST" id="formCreate">--}}
-    {{--@csrf--}}
-    {{--<div class="modal-body">--}}
-
-    {{--<div class="form-group">--}}
-    {{--<label for="emailEmissor">Nome</label>--}}
-    {{--<input type="text" class="form-control" name="name" id="nameEmissor" placeholder="Digite seu nome">--}}
-    {{--</div>--}}
-    {{--<div class="form-group">--}}
-    {{--<label for="tokenEmissor">Token</label>--}}
-    {{--<input type="text" class="form-control" name="token" id="tokenEmissor" placeholder="Token">--}}
-    {{--</div>--}}
-    {{--<div class="form-group">--}}
-    {{--<label for="validadeEmissor">Validade</label>--}}
-    {{--<input type="text" class="form-control" name="maturity" id="validadeEmissor" placeholder="Data de validade">--}}
-    {{--</div>--}}
-
-    {{--</div>--}}
-    {{--<div class="modal-footer">--}}
-    {{--<button type="button" class="btn" data-dismiss="modal">Fechar</button>--}}
-    {{--<button type="submit" class="btn btn-primary">Enviar</button>--}}
-    {{--</div>--}}
-    {{--</form>--}}
-    {{--</div>--}}
-    {{--</section>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Projeto</label>
+                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" id="projectId" name="project_id">
+                            <option selected=""> - </option>
+                            @foreach($projects as $project)
+                                <option value="{{$project->id}}">
+                                    {{$project->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Rebanho</label>
+                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" disabled id="rebanhoId" name="group_id">
+                            <option selected=""> - </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn bg-warning" id="btn-filtrar-participants" disabled>Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="panel" id="table-check">
         <div class="panel-body">
@@ -138,7 +136,7 @@
             var idMeeting = '{{$meeting->id}}';
 
 
-            $('#datatables').DataTable({
+            var table = $('#datatables').DataTable({
                 processing: true,
                 serverSide: true,
                 ordering: true,
@@ -180,6 +178,55 @@
                 }
 
             });
+
+            $('#project').on('change', function (e) {
+                var project = $(this).val();
+                axios.get(`/api/projects/${project}/groups`)
+                    .then(function (response) {
+                        $('#rebanho').empty();
+                        var groups = response.data;
+                        if( groups.length > 0){
+                            $('#rebanho').append(`<option value="">Selecione um Rebanho</option>`);
+                            $.each(groups, function (key, value) {
+                                $('#rebanho').append(`<option value="${value.id}">${value.name}</option>`);
+                            });
+                            $('#rebanho').prop('disabled', false);
+
+                        }else{
+                            $('#rebanho').append(`<option value="">Esse projeto não possui nenhum rebanho</option>`);
+                            $('#rebanho').prop('disabled', true);
+                        }
+                    });
+            });
+            $('#projectId').on('change', function (e) {
+                var project = $(this).val();
+                axios.get(`/api/projects/${project}/groups`)
+                    .then(function (response) {
+                        $('#rebanhoId').empty();
+                        var groups = response.data;
+                        if( groups.length > 0){
+                            $('#rebanhoId').append(`<option value="">Selecione um Rebanho</option>`);
+                            $.each(groups, function (key, value) {
+                                $('#rebanhoId').append(`<option value="${value.id}">${value.name}</option>`);
+                            });
+                            $('#rebanhoId').prop('disabled', false);
+                            $('#btn-filtrar-participants').prop('disabled', false);
+
+                        }else{
+                            $('#rebanhoId').append(`<option value="">Esse projeto não possui nenhum rebanho</option>`);
+                            $('#rebanhoId').prop('disabled', true);
+                            $('#btn-filtrar-participants').prop('disabled', true);
+                        }
+                    });
+            });
+            $('#btn-filtrar-participants').on('click', function (e) {
+                var group = $('#rebanhoId').val();
+                let url = `/meetings/${idMeeting}`;
+                url += `?idGroup=${group}`;
+                table.ajax.url(url).load();
+
+
+            })
         });
     </script>
 @stop

@@ -19,11 +19,12 @@ class ParticipantController extends Controller
         try{
 //            dd($request->all()['name']);
             $participant = Participant::create($validation);
-            return response()->json([
-                'message' => 'Participant Created',
-                'status' => 200,
-                'data' => $participant,
-            ], 200);
+            return redirect()->back();
+//            return response()->json([
+//                'message' => 'Participant Created',
+//                'status' => 200,
+//                'data' => $participant,
+//            ], 200);
 
         }catch(\Exception $e){
 

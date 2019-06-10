@@ -95,19 +95,20 @@ class ProjectController extends Controller
     }
 
     public function findGroup(Request $request, Project $project) {
-
-        try{
-
-            $groups = $project->groups;
-//            dd($groups);
-            return response()->json([
-                'message'=>'OK!',
-                'status'=>200,
-                'data'=> $groups
-            ], 200);
-
-        }catch(\Exception $e){
-            return $e->getMessage();
-        }
+        $groups = $project->groups;
+        return response()->json($groups);
+//        try{
+//
+//            $groups = $project->groups;
+////            dd($groups);
+//            return response()->json([
+//                'message'=>'OK!',
+//                'status'=>200,
+//                'data'=> response()->json($groups)
+//            ], 200);
+//
+//        }catch(\Exception $e){
+//            return $e->getMessage();
+//        }
     }
 }

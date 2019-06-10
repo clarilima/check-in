@@ -50,7 +50,7 @@
                     <form data-validate="parsley" id="form-register-meeting">
                         <div>
                             <label for='date' style="display: block;">* Data do Encontro</label>
-                            <input type="date" placeholder="* Data do Encontro" name='date' id='date-meeting' value="{!! old('date') !!}" data-required="true">
+                            <input type="date" placeholder="+* Data do Encontro" name='date' id='date-meeting' value="{!! old('date') !!}" data-required="true">
                         </div>
                         <div>
                             {{--<label for="description">Descriçã</label>--}}
